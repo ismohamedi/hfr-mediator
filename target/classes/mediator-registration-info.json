@@ -1,0 +1,33 @@
+{
+  "urn": "urn:uuid:e25ed5c0-be27-11eb-b01e-05859d2ed63a",
+  "version": "0.1.0",
+  "name": "hfr",
+  "description": "sending health facilities",
+  "endpoints": [
+    {
+      "name": "hfr Route",
+      "host": "localhost",
+      "port": "3000",
+      "path": "/mediator",
+      "type": "http"
+    }
+  ],
+  "defaultChannelConfig": [
+    {
+      "name": "hfr",
+      "urlPattern": "^/mediator$",
+      "type": "http",
+      "allow": ["hfr"],
+      "routes": [
+        {
+          "name": "hfr Route",
+          "host": "localhost",
+          "port": "3000",
+          "path": "/mediator",
+          "type": "http",
+          "primary": "true"
+        }
+      ]
+    }
+  ]
+}
