@@ -91,6 +91,8 @@ public class MediatorMain {
         }
 
         MediatorConfig config = loadConfig(configPath);
+        // setting SSL
+        config.setSSLContext(new MediatorConfig.SSLContext(true));
         final MediatorServer server = new MediatorServer(system, config);
 
         //setup shutdown hook
