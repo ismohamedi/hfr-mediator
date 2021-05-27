@@ -1,3 +1,4 @@
 com/hfr/mediator/MediatorMain.class
+com/hfr/mediator/SourceMsg.class
 com/hfr/mediator/DefaultOrchestrator.class
 com/hfr/mediator/MediatorMain$1.class

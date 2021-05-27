@@ -28,7 +28,6 @@ public class MediatorMain {
 
         //TODO Add own startup actors here
         //...
-        SourceMsg src = new      SourceMsg();
         return startupActors;
     }
 
