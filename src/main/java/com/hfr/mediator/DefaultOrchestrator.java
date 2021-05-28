@@ -15,6 +15,7 @@ import org.openhim.mediator.engine.MediatorConfig;
 import org.openhim.mediator.engine.CoreResponse.Orchestration;
 import org.openhim.mediator.engine.messages.FinishRequest;
 import org.openhim.mediator.engine.messages.MediatorHTTPRequest;
+import org.openhim.mediator.engine.messages.MediatorHTTPResponse;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -61,8 +62,14 @@ public class DefaultOrchestrator extends UntypedActor {
              ActorSelection httpConnector = getContext().actorSelection(config.userPathFor("http-connector"));
              httpConnector.tell(hprsRequest, getSelf());
 
-            FinishRequest finishRequest = new FinishRequest(convertedMessage, "application/json", HttpStatus.SC_OK);
-            ((MediatorHTTPRequest) msg).getRequestHandler().tell(finishRequest, getSelf());
+            // FinishRequest finishRequest = new FinishRequest(convertedMessage, "application/json", HttpStatus.SC_OK);
+            // ((MediatorHTTPRequest) msg).getRequestHandler().tell(finishRequest, getSelf());
+
+        } else if (msg instanceof MediatorHTTPResponse) {
+            ((MediatorHTTPResponse) msg)
+                    .getOriginalRequest()
+                    .getRequestHandler()
+                    .tell(((MediatorHTTPResponse) msg).toFinishRequest(), getSelf());
         } else {
             unhandled(msg);
         }
